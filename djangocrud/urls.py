@@ -24,5 +24,7 @@ urlpatterns = [
     path("",views.inicio, name='inicio'),
     path("registro/", views.registro, name='registro'),
     path("libreria/", views.libreria, name='libreria'),
+    path("agregar/libro/", views.agregar_libro, name='agregar_libro'),
     path("salir/", views.salir, name='salir'),
+    path("iniciar_sesion/", views.inicio_sesion, name='iniciar_sesion'),
 ]

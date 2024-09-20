@@ -14,6 +14,7 @@ Este es un proyecto simple de una página web para gestionar libros (CRUD) donde
 - **Python 3.x**: Asegúrate de tener Python instalado en tu sistema.
 - **Virtualenv**: Para crear y gestionar entornos virtuales.
 - **Django**: El framework web utilizado para este proyecto.
+- **Pillow** Para manejar imágenes
 
 ## Instalación
 
@@ -54,7 +55,8 @@ Una vez que el servidor esté en funcionamiento, podrás realizar las siguientes
 
 - El CRUD de libros está en progreso.
 - Se están añadiendo nuevas funcionalidades y mejorando la estructura del proyecto.
-- Próximamente se agregará autenticación de usuarios y validaciones.
+- Se agrego el registro e inicio de sesion de usuarios
+- Se agrego el ingreso de libros
 
 ## Tecnologías Utilizadas
 
@@ -64,8 +66,7 @@ Una vez que el servidor esté en funcionamiento, podrás realizar las siguientes
 
 ## Próximas Actualizaciones
 
-- Implementación de autenticación de usuarios.
-- Validaciones en los formularios de ingreso y actualización de libros.
+- Validaciones en los formularios actualización de libros.
 - Estilización de la interfaz con Bootstrap o CSS personalizado.
 
 ## Contribuciones

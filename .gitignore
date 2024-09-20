@@ -9,3 +9,6 @@ db.sqlite3
 
 # Archivos de VSCode (si estás usando VSCode)
 .vscode/
+
+#Archivos estaticos
+media/
