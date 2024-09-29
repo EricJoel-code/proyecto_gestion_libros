@@ -2,4 +2,21 @@
 
 {% block content %}
 <h1>Librerias</h1>
+
+<ul>
+    {% for libro in libros %}
+    <li>
+        <a href="{% url 'detalle_libro' libro.id %}">
+            <h2>{{libro.title}}</h2>
+        </a>
+        <p>{{libro.description}}</p>
+        <p>{{libro.user.username}}</p>
+        {% if libro.image %}
+        <img src="{{ libro.image.url }}" alt="{{ libro.title }}" width="150">
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+
 {% endblock %}

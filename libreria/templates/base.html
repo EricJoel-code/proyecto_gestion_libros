@@ -13,10 +13,13 @@
             <li>
                 <a href="/">Inicio</a>
             </li>
+            {% if user.is_authenticated %}
             <li>
                 <a href="/libreria">Libreria</a>
             </li>
-            {% if user.is_authenticated %}
+            <li>
+                <a href="/agregar/libro/">Agregar Libros</a>
+            </li>
             <li>
                 <a href="/salir">Cerrar Sesion</a>
             </li>

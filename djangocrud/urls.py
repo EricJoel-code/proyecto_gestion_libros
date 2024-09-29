@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from libreria import views
+from django.conf import settings 
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,6 +27,7 @@ urlpatterns = [
     path("registro/", views.registro, name='registro'),
     path("libreria/", views.libreria, name='libreria'),
     path("agregar/libro/", views.agregar_libro, name='agregar_libro'),
+    path("libreria/<int:libro_id>/", views.detalle_libro, name='detalle_libro'),
     path("salir/", views.salir, name='salir'),
     path("iniciar_sesion/", views.inicio_sesion, name='iniciar_sesion'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

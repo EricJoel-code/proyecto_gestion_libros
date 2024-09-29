@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.contrib.auth import login, logout, authenticate
-from django.db import IntegrityError
+from django.shortcuts import render, redirect, get_object_or_404 # type: ignore
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm # type: ignore
+from django.contrib.auth.models import User # type: ignore
+from django.http import HttpResponse # type: ignore
+from django.contrib.auth import login, logout, authenticate # type: ignore
+from django.db import IntegrityError # type: ignore
 from .forms import BookForm
+from .models import Libros
 
 # Create your views here.
 def inicio(request):
@@ -34,7 +35,8 @@ def registro(request):
         })
 
 def libreria(request):
-    return render(request,'libreria.html')
+    libros = Libros.objects.filter(user=request.user)
+    return render(request,'libreria.html',{'libros':libros})
 
 def salir(request):
     logout(request)
@@ -78,4 +80,36 @@ def agregar_libro(request):
             return render(request, 'agregar_libro.html', {
                 'form': BookForm,
                 'error': f'Ocurrió un error: {str(e)}'
+            })
+
+def detalle_libro(request, libro_id):
+    libro = get_object_or_404(Libros, pk=libro_id, user=request.user)
+    
+    if request.method == 'GET':
+        form = BookForm(instance=libro)
+        return render(request, 'detalles_libros.html', {'libro': libro, 'form': form})
+    
+    else:
+        try:
+            # Maneja POST y también archivos (imágenes)
+            form = BookForm(request.POST, request.FILES, instance=libro)
+            
+            if form.is_valid():
+                form.save()  # Guarda los cambios solo si el formulario es válido
+                return redirect('libreria')  # Redirige a la lista de libros
+            
+            else:
+                # Si el formulario no es válido, vuelve a mostrarlo con errores
+                return render(request, 'detalles_libros.html', {
+                    'libro': libro,
+                    'form': form,
+                    'error': 'Por favor, revisa los datos introducidos.'
+                })
+        
+        except ValueError:
+            # Si ocurre un error inesperado, muestra un mensaje de error
+            return render(request, 'detalles_libros.html', {
+                'libro': libro,
+                'form': form,
+                'error': "Error al actualizar. Revise los datos e intente de nuevo."
             })
