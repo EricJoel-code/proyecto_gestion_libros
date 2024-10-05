@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout, authenticate # type: ignore
 from django.db import IntegrityError # type: ignore
 from .forms import BookForm
 from .models import Libros
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def inicio(request):
@@ -34,10 +35,12 @@ def registro(request):
             'error': 'La contraseña no coincide'
         })
 
+@login_required
 def libreria(request):
     libros = Libros.objects.filter(user=request.user)
     return render(request,'libreria.html',{'libros':libros})
 
+@login_required
 def salir(request):
     logout(request)
     return redirect('inicio')
@@ -58,6 +61,7 @@ def inicio_sesion(request):
             login(request, user)
             return redirect('libreria')
 
+@login_required
 def agregar_libro(request):
     if request.method == 'GET':
         return render(request, 'agregar_libro.html', {
@@ -82,6 +86,7 @@ def agregar_libro(request):
                 'error': f'Ocurrió un error: {str(e)}'
             })
 
+@login_required
 def detalle_libro(request, libro_id):
     libro = get_object_or_404(Libros, pk=libro_id, user=request.user)
     
@@ -113,3 +118,10 @@ def detalle_libro(request, libro_id):
                 'form': form,
                 'error': "Error al actualizar. Revise los datos e intente de nuevo."
             })
+
+@login_required
+def eliminar_libro(request, libro_id):
+    libro = get_object_or_404(Libros, pk=libro_id, user=request.user)
+    if request.method == 'POST':
+        libro.delete()
+        return redirect('libreria')

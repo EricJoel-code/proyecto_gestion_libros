@@ -14,9 +14,20 @@
         {% if libro.image %}
         <img src="{{ libro.image.url }}" alt="{{ libro.title }}" width="150">
         {% endif %}
+        <form method="POST" action="{% url 'eliminar_libro' libro.id %}" onsubmit="return confirmDelete()">
+            {% csrf_token %}
+            <button type="submit">
+                Eliminar
+            </button>
+        </form>
     </li>
     {% endfor %}
 </ul>
+<script>
+    function confirmDelete() {
+        return confirm("¿Estás seguro que deseas eliminar este libro?");
+    }
+</script>
 
 
 {% endblock %}

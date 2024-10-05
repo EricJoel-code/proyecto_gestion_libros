@@ -53,14 +53,11 @@ Una vez que el servidor esté en funcionamiento, podrás realizar las siguientes
 
 ## Estado Actual del Proyecto
 
-- El CRUD de libros está en progreso.
-- Se están añadiendo nuevas funcionalidades y mejorando la estructura del proyecto.
-- Se implemento el registro e inicio de sesion de usuarios
-- Se implemento la función para ingresar libros
-- Se implemento la función para listar los libros
+- El CRUD de libros está terminado (agregar,ver,actualizar,eliminar)
+- Tiene implementado el registro e inicio de sesion de usuarios
 - Se implemento la función de buscar cada libro por id
-- Se implemento la función de actualizar cada libro 
 - Se implemento el manejo de errores tanto para el ingreso de libros como para la actualización
+- Se agrego estilos en la parte de inicio, registro e inicio de sesión
 
 ## Tecnologías Utilizadas
 
@@ -70,7 +67,7 @@ Una vez que el servidor esté en funcionamiento, podrás realizar las siguientes
 
 ## Próximas Actualizaciones
 
-- Estilización de la interfaz con Bootstrap o CSS personalizado.
+- Estilización con Bootstrap o CSS personalizado.
 
 ## Contribuciones
 

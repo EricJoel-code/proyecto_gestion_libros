@@ -28,6 +28,7 @@ urlpatterns = [
     path("libreria/", views.libreria, name='libreria'),
     path("agregar/libro/", views.agregar_libro, name='agregar_libro'),
     path("libreria/<int:libro_id>/", views.detalle_libro, name='detalle_libro'),
+    path("libreria/<int:libro_id>/eliminar", views.eliminar_libro, name='eliminar_libro'),
     path("salir/", views.salir, name='salir'),
     path("iniciar_sesion/", views.inicio_sesion, name='iniciar_sesion'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
